@@ -15,3 +15,13 @@ from .ProductVariantCrud.ProductVariantDetail import *
 from .ProductVariantCrud.ProductVariantDelete import *
 from .ProductVariantCrud.ProductVariantUpdate import *
 from .ProductVariantCrud.ProductVariantCreate import *
+from .ColorCrud.ColorCreate import *
+from .ColorCrud.ColorDetail import *
+from .ColorCrud.ColorUpdate import *
+from .ColorCrud.ColorDelete import *
+from .ColorCrud.ColorList import *
+from .SizeCrud.SizeCreate import *
+from .SizeCrud.SizeDetail import *
+from .SizeCrud.SizeUpdate import *
+from .SizeCrud.SizeDelete import *
+from .SizeCrud.SizeList import *
