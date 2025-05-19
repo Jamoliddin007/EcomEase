@@ -16,4 +16,9 @@ urlpatterns = [
     path('product/<int:id>/', ProductDetailAPIView.as_view(), name='product-detail'),
     path('product/<int:id>/delete/', ProductDeleteAPIView.as_view(), name='product-delete'),
     path('product/<int:id>/update/', ProductUpdateAPIView.as_view(), name='product-update'),
+    path('product_variants/', ProductVariantListAPIView.as_view(), name='product-variant-list-create'),
+    path('product_variants/<int:id>/', ProductVariantDetailAPIView.as_view(), name='product-variant-detail'),
+    path('product_variants/<int:id>/delete/', ProductVariantDeleteAPIView.as_view(), name='product-variant-delete'),
+    path('product_variants/<int:id>/update/', ProductVariantUpdateAPIView.as_view(), name='product-variant-update'),
+    path('product_variants/', ProductVariantCreateAPIView.as_view(), name='product-variant-list-create'),
 ]

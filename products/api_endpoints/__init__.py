@@ -10,3 +10,8 @@ from .ProductCrud.ProductDetail import *
 from .ProductCrud.ProductDelete import *
 from .ProductCrud.ProductUpdate import *
 from .ProductCrud.ProductCreate import *
+from .ProductVariantCrud.ProductVariantList import *
+from .ProductVariantCrud.ProductVariantDetail import *
+from .ProductVariantCrud.ProductVariantDelete import *
+from .ProductVariantCrud.ProductVariantUpdate import *
+from .ProductVariantCrud.ProductVariantCreate import *
