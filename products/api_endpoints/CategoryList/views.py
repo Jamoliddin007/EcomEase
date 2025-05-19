@@ -4,6 +4,7 @@ from rest_framework import status
 from products.models import Category
 from products.api_endpoints.CategoryList.serializers import CategorySerializer
 
+
 class CategoryListCreateAPIView(APIView):
     def get(self, request):
         categories = Category.objects.all()
