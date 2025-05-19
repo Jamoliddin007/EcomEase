@@ -5,3 +5,8 @@ from .BrandCrud.BrandDetail import *
 from .BrandCrud.BrandList import *
 from .BrandCrud.BrandDelete import *
 from .BrandCrud.BrandUpdate import *
+from .ProductCrud.ProductList import *
+from .ProductCrud.ProductDetail import *
+from .ProductCrud.ProductDelete import *
+from .ProductCrud.ProductUpdate import *
+from .ProductCrud.ProductCreate import *
