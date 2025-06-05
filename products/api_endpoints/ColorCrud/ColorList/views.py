@@ -10,3 +10,4 @@ class ColorListAPIView(APIView):
         colors = Color.objects.all()
         serializer = ColorListSerializer(colors, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
