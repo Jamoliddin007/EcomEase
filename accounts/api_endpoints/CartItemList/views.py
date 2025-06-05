@@ -1,26 +1,22 @@
-from rest_framework.generics import GenericAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import GenericAPIView
 from rest_framework import permissions
 from rest_framework.response import Response
 
-from accounts.api_endpoints.CartItemCreate.serializers import CartItemCreateSerializer
+from accounts.api_endpoints.CartItemsList.serializers import CartItemSerializer
 from accounts.models import CartItem
 
-class CartItemsCreateAPIView(GenericAPIView):
+
+class CartItemsListAPIView(GenericAPIView):
     queryset = CartItem.objects.all()
-    serializer_class = CartItemCreateSerializer
+    serializer_class = CartItemSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-    
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
+    def get_queryset(self):
+        return CartItem.objects.filter(cart=self.request.user.cart)
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
 
         return Response(serializer.data)
     
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-__all__ = ["CartItemsCreateAPIView"]
+__all__ = ["CartItemsListAPIView"]
