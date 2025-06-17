@@ -1,6 +1,6 @@
 from rest_framework.generics import RetrieveAPIView
 from products.models import Category
-from products.api_endpoints.CategoryCrud.CategoryDetail.serializers import CategoryDetailSerializer
+from products.api_endpoints.Category.CategoryDetail.serializers import CategoryDetailSerializer
 
 class CategoryDetailAPIView(RetrieveAPIView):
     queryset = Category.objects.all()
