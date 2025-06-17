@@ -1,18 +1,24 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import UpdateModelMixin
+from rest_framework import permissions
+
 from products.models import Product
-from .serializers import ProductUpdateSerializer
+from products.api_endpoints.Product.ProductUpdate.serializers import ProductUpdateSerializer
 
-class ProductUpdateAPIView(APIView):
-    def patch(self, request, pk):
-        try:
-            product = Product.objects.get(pk=pk)
-        except Product.DoesNotExist:
-            return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = ProductUpdateSerializer(product, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProductUpdateAPIView(GenericAPIView, UpdateModelMixin):
+    queryset = Product.objects.all()
+    serializer_class = ProductUpdateSerializer
+    permission_classes = [permissions.IsAdminUser]
+    lookup_field = "slug"
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+    
+
+__all__ = [
+    "ProductUpdateAPIView"
+]
