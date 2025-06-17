@@ -1,14 +1,14 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.generics import DestroyAPIView
+from rest_framework import permissions
+
 from products.models import Brand
-from rest_framework.permissions import IsAdminUser
-from django.shortcuts import get_object_or_404
+from products.api_endpoints.Brand.BrandDelete.serializers import BrandDeleteSerializer
 
-class BrandDeleteView(APIView):
-    permission_classes = [IsAdminUser]
 
-    def delete(self, request, id):
-        brand = get_object_or_404(Brand, id=id)
-        brand.delete()
-        return Response({"detail": "Brand deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+class BrandDeleteAPIView(DestroyAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BrandDeleteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
