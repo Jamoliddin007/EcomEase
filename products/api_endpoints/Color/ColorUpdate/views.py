@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from products.models import Color
-from products.api_endpoints.ColorCrud.ColorUpdate.serializers import ColorUpdateSerializer
+from products.api_endpoints.Color.ColorUpdate.serializers import ColorUpdateSerializer
 
 
 class ColorUpdateAPIView(APIView):
