@@ -1,12 +1,48 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .serializers import ProductCreateSerializer
+from rest_framework import serializers
 
-class ProductCreateAPIView(APIView):
-    def post(self, request):
-        serializer = ProductCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+from products.models import Product, Category
+from products.utils import slugify
+
+
+class CategoryProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = [
+            "id",
+            "name",
+            "slug"
+        ]
+
+class ProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            "name",
+            "description",
+            "brand",
+            "default_images",
+            "category"
+        ]
+    
+    def to_representation(self, instance):
+        instance = {
+            "id": instance.id,
+            "name": instance.name,
+            "description": instance.description,
+            "brand": instance.brand.name,
+            "slug": instance.slug,
+            "is_active": instance.is_active,
+            "category": CategoryProductCreateSerializer(instance.category).data
+        }
+
+        return instance
+
+    def create(self, validated_data):
+        is_exists = Product.objects.filter(slug=slugify(validated_data["name"])).exists()
+        if is_exists:
+            return serializers.ValidationError("Product with this name already exists (or deactivated).")
+        
+        return Product.objects.create(
+            slug = slugify(validated_data["name"]),
+            **validated_data
+        )
