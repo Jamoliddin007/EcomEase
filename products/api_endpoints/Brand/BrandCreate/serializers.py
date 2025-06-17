@@ -1,16 +1,21 @@
 from rest_framework import serializers
-from products.models import Brand, Product
 
-class ProductNestedSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'name', 'slug', 'is_active']
-        ref_name = "BrandDetailProductNestedSerializer_ProductNested"
+from products.models import Brand
 
-class BrandDetailSerializer(serializers.ModelSerializer):
-    products = ProductNestedSerializer(many=True, read_only=True, source='product_set')
 
+class BrandCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ['id', 'name', 'slug', 'logo', 'products']
-        ref_name = "BrandDetailSerializer"
+        fields = [
+            "name",
+            "slug",
+            "logo"
+        ]
+
+    def validate_logo(self, value):
+        if value.size > 2 * 1024 * 1024:
+            raise serializers.ValidationError("Logo size should be less than 2 MB")
+        
+        if not value.content_type.startswith('image/'):
+            raise serializers.ValidationError("Only image files are allowed")
+        return value
