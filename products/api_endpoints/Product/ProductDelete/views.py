@@ -1,13 +1,15 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.generics import DestroyAPIView
+
 from products.models import Product
 
-class ProductDeleteAPIView(APIView):
-    def delete(self, request, id):
-        try:
-            product = Product.objects.get(id=id)
-        except Product.DoesNotExist:
-            return Response({'detail': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
-        product.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ProductDeleteAPIView(DestroyAPIView):
+    queryset = Product.objects.all()
+    lookup_field = "slug"
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
+
+
+__all__ = ["ProductDeleteAPIView"]
