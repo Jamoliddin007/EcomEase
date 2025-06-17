@@ -10,7 +10,7 @@ class CartItemInline(admin.TabularInline):
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ("id", "email", "phone_number", "first_name", "last_name", "is_active", "is_staff")
+    list_display = ("id", "email", "phone_number", "first_name", "last_name", "is_active", "is_staff", "is_confirmed")
     list_display_links = ("id", "email", "phone_number", "first_name", "last_name")
     search_fields = ("email", "phone_number", "first_name", "last_name")
     list_filter = ("is_active", "is_staff")
@@ -19,7 +19,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {'fields': ('email', 'password')}),
         (('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number', 'avatar', 'bio')}),
         (('Permissions'), {
-            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+            'fields': ('is_active', 'is_confirmed', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),
     )
     
@@ -41,3 +41,8 @@ class CartAdmin(admin.ModelAdmin):
     search_fields = ("user",)
 
     inlines = [CartItemInline]
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ("id", "cart", "product", "quantity")
+    list_display_links = ("id", "cart")
