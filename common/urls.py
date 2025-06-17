@@ -14,5 +14,5 @@ urlpatterns = [
     path("contact/", ContactView.as_view(), name="contact"),
     path("blog/", BlogView.as_view(), name="blog"),
     path("blog/details/", BlogDetailView.as_view(), name="blog-details"),
-    # path("cart/", ShoppingCartView.as_view(), name="shopping-cart"),
+    path("cart/", ShoppingCartView.as_view(), name="shopping-cart"),
 ]
