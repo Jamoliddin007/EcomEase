@@ -69,7 +69,7 @@ class ShopGridView(TemplateView):
         context['title'] = 'Shop Grid'
         return context
     
-class ShopingCartView(TemplateView):
+class ShoppingCartView(TemplateView):
     template_name = 'shoping-cart.html'
 
     def get_context_data(self, **kwargs):
