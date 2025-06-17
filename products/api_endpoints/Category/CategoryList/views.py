@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from products.models import Category
-from products.api_endpoints.CategoryCrud.CategoryList.serializers import CategorySerializer
+from products.api_endpoints.Category.CategoryList.serializers import CategorySerializer
 
 
 class CategoryListCreateAPIView(APIView):
