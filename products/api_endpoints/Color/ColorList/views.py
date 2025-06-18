@@ -5,7 +5,7 @@ from products.models import Color
 from products.api_endpoints.Color.ColorList.serializers import ColorListSerializer
 
 
-class ColorListAPIView(APIView):
+class ColorListCreateView(APIView):
     def get(self, request):
         colors = Color.objects.all()
         serializer = ColorListSerializer(colors, many=True)

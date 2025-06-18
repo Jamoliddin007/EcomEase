@@ -5,7 +5,7 @@ from products.models import Color
 from products.api_endpoints.Color.ColorUpdate.serializers import ColorUpdateSerializer
 
 
-class ColorUpdateAPIView(APIView):
+class ColorRetrieveUpdateDestroyView(APIView):
     def patch(self, request, pk):
         try:
             color = Color.objects.get(pk=pk)

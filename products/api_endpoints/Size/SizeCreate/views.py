@@ -4,7 +4,7 @@ from rest_framework import status
 from products.models import Size
 from .serializers import SizeCreateSerializer
 
-class SizeCreateAPIView(APIView):
+class SizeListCreateView(APIView):
     def post(self, request):
         serializer = SizeCreateSerializer(data=request.data)
         if serializer.is_valid():

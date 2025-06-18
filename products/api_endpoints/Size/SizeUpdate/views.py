@@ -2,9 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from products.models import Size
-from products.api_endpoints.SizeCrud.SizeUpdate.serializers import SizeUpdateSerializer
+from products.api_endpoints.Size.SizeUpdate.serializers import SizeUpdateSerializer
 
-class SizeUpdateAPIView(APIView):
+class SizeRetrieveUpdateDestroyView(APIView):
     def patch(self, request, pk):
         try:
             size = Size.objects.get(pk=pk)

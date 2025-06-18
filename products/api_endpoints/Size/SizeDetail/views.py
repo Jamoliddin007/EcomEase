@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from products.models import Size
-from products.api_endpoints.SizeCrud.SizeDetail.serializers import SizeDetailSerializer
+from products.api_endpoints.Size.SizeDetail.serializers import SizeDetailSerializer
 
 class SizeDetailAPIView(APIView):
     def get(self, request, pk):
