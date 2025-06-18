@@ -3,33 +3,31 @@ from django.urls import path
 from products.api_endpoints import *
 
 
-
 urlpatterns = [
-    path('categories/', CategoryListCreateAPIView.as_view(), name='category-list-create'),
-    path('categories/<slug:slug>/', CategoryDetailAPIView.as_view(), name='category-detail'),
-    path('categories/<int:id>/delete/', CategoryDeleteView.as_view(), name='category-delete'),
-    path('brands/<int:id>/', BrandDetailView.as_view(), name='brand-detail'),
-    path('brands/', BrandListView.as_view(), name='brand-list-create'),
-    path('brands/<int:id>/delete/', BrandDeleteView.as_view(), name='brand-delete'),
-    path('brands/<int:id>/update/', BrandPatchView.as_view(), name='brand-update'),
-    path('product/', ProductListAPIView.as_view(), name='product-list-create'),
-    path('product/<int:id>/', ProductDetailAPIView.as_view(), name='product-detail'),
-    path('product/<int:id>/delete/', ProductDeleteAPIView.as_view(), name='product-delete'),
-    path('product/<int:id>/update/', ProductUpdateAPIView.as_view(), name='product-update'),
-    path('product_variants/', ProductVariantListAPIView.as_view(), name='product-variant-list-create'),
-    path('product_variants/<int:id>/', ProductVariantDetailAPIView.as_view(), name='product-variant-detail'),
-    path('product_variants/<int:id>/delete/', ProductVariantDeleteAPIView.as_view(), name='product-variant-delete'),
-    path('product_variants/<int:id>/update/', ProductVariantUpdateAPIView.as_view(), name='product-variant-update'),
-    path('product_variants/', ProductVariantCreateAPIView.as_view(), name='product-variant-list-create'),
-    path('colors/', ColorListAPIView.as_view(), name='color-list-create'),  
-    path('colors/<int:id>/', ColorDetailAPIView.as_view(), name='color-detail'),
-    path('colors/<int:id>/delete/', ColorDeleteAPIView.as_view(), name='color-delete'),
-    path('colors/<int:id>/update/', ColorUpdateAPIView.as_view(), name='color-update'),
-    path('colors/', ColorCreateAPIView.as_view(), name='color-list-create'),
-    path('sizes/', SizeListAPIView.as_view(), name='size-list-create'),
-    path('sizes/<int:id>/', SizeDetailAPIView.as_view(), name='size-detail'),
-    path('sizes/<int:id>/delete/', SizeDeleteAPIView.as_view(), name='size-delete'),
-    path('sizes/<int:id>/update/', SizeUpdateAPIView.as_view(), name='size-update'),
-    path('sizes/', SizeCreateAPIView.as_view(), name='size-list-create'),
+    path('', ProductListAPIView.as_view(), name="product-list"),
+    path('create/', ProductCreateAPIView.as_view(), name="product-create"),
+    path('<str:slug>/', ProductRetrieveAPIView.as_view(), name="product-retrieve"),
+    path('<str:slug>/update/', ProductUpdateAPIView.as_view(), name="product-update"),
+    path('<str:slug>/delete/', ProductDeleteAPIView.as_view(), name="product-delete"),
 
+    path('brands/', BrandListAPIView.as_view(), name="brand-list"),
+    path('brands/create/', BrandCreateAPIView.as_view(), name="brand-create"),
+    path('brands/<str:slug>/', BrandRetrieveAPIView.as_view(), name="brand-retrieve"),
+    path('brands/<str:slug>/update/', BrandUpdateAPIView.as_view(), name="brand-update"),
+    path('brands/<str:slug>/delete/', BrandDeleteAPIView.as_view(), name="brand-delete"),
+
+    path('sizes/', SizeListCreateView.as_view(), name='size-list-create'),
+    path('sizes/<int:pk>/', SizeRetrieveUpdateDestroyView.as_view(), name='size-detail'),
+    
+    path('colors/', ColorListCreateView.as_view(), name='color-list-create'),
+    path('colors/<int:pk>/', ColorRetrieveUpdateDestroyView.as_view(), name='color-detail'),
+
+    path('categories/', CategoryListAPIView.as_view(), name="category-list"),
+    path('categories/create/', CategoryCreateAPIView.as_view(), name="category-create"),
+    path('categories/<str:slug>/', CategoryRetrieveAPIView.as_view(), name="category-retrieve"),
+    path('categories/<str:slug>/update/', CategoryUpdateAPIView.as_view(), name="category-update"),
+    path('categories/<str:slug>/delete/', CategoryDeleteAPIView.as_view(), name="category-delete"),
+
+    path('reviews/create/', ReviewCreateAPIView.as_view(), name="review-create"),
+    path('reviews/delete/<int:id>/', ReviewDeleteAPIView.as_view(), name="review-delete")
 ]
