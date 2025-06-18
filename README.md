@@ -49,8 +49,8 @@ Swagger: http://localhost:8000/swagger/
 Admin Panel: http://localhost:8000/admin/
 
 
-**🎯 Future Improvements
-Add GraphQL support**
+## 🎯 Future Improvements
+## Add GraphQL support
 
 _Frontend integration with React or Vue
 
