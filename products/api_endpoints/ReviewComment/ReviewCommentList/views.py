@@ -1,38 +1,24 @@
-from rest_framework import serializers
+from rest_framework.generics import ListAPIView
+from rest_framework import permissions
 
-from products.models import Review, Comment, Product
-
-
-class ReviewCommentProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = [
-            "id",
-            "name"
-        ]
+from products.models import Review, Comment
+from products.api_endpoints.ReviewComment.ReviewCommentList.serializers import (
+    UserReviewsListSerializer,
+    UserCommentsListSerializer
+)
 
 
-class UserReviewsListSerializer(serializers.ModelSerializer):
-    product = ReviewCommentProductSerializer()
-    
-    class Meta:
-        model = Review
-        fields = [
-            "id",
-            "product",
-            "rating",
-            "review",
-            "created_at"
-        ]
+class UserReviewsListAPIView(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserReviewsListSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(user=self.request.user).order_by("created_at")
 
 
-class UserCommentsListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = [
-            "id",
-            "product",
-            "text",
-            "parent",
-            "created_at"
-        ]
+class UserCommentsListAPIView(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserCommentsListSerializer
+
+    def get_queryset(self):
+        return Comment.objects.filter(user=self.request.user).order_by("created_at")

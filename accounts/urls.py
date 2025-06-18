@@ -2,7 +2,7 @@ from django.urls import path
 
 from accounts.api_endpoints import *
 from accounts.template_views import *
-# from products.api_endpoints import UserReviewsListAPIView, UserCommentsListAPIView
+from products.api_endpoints import UserReviewsListAPIView, UserCommentsListAPIView
 
 apis = [
     path('register/', RegisterUserAPIView.as_view(), name="register"),
@@ -14,9 +14,9 @@ apis = [
     path('cart/cartitems/<int:pk>/update/', CartItemsUpdateAPIView.as_view(), name="cart-items-update"),
     path('cart/cartitems/<int:pk>/delete/', CartItemsDeleteAPIView.as_view(), name="cart-items-delete"),
 
-    # reviews and comments list
-    # path('profile/reviews/', UserReviewsListAPIView.as_view(), name="user-reviews"),
-    # path('profile/comments/', UserCommentsListAPIView.as_view(), name="user-comments"),
+    #reviews and comments list
+    path('profile/reviews/', UserReviewsListAPIView.as_view(), name="user-reviews"),
+    path('profile/comments/', UserCommentsListAPIView.as_view(), name="user-comments"),
     
     path('products/save-unsave/', SaveProductAPIView.as_view(), name="save-unsave-products"),
     path('products/saved/', SavedProductsListAPIView.as_view(), name="saved-products"),
@@ -33,7 +33,7 @@ template_urls = [
     path("template/register/", RegisterView.as_view(), name="register-template"),
     path("template/login/", LoginView.as_view(), name="login-template"),
     path("template/profile/", ProfileView.as_view(), name="profile-template"),
-    # path("template/reset-password/", PasswordResetView.as_view(), name="reset-password-template"),
+   # path("template/reset-password/", PasswordResetView.as_view(), name="reset-password-template"),
 ]
 
 urlpatterns = apis + template_urls
