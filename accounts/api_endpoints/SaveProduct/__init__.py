@@ -1,1 +1,3 @@
-from .views import *
+from .views import SaveProductAPIView
+
+__all__ = ["SaveProductAPIView"]

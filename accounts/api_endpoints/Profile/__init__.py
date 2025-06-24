@@ -1,3 +1,10 @@
-from .ProfileUpdate import *
-from .ProfileDelete import *
-from .PasswordReset import *
+from .ProfileUpdate import ProfileUpdateAPIView
+from .ProfileDelete import ProfileDeleteAPIView
+from .PasswordReset import PasswordResetRequestAPIView, PasswordResetConfirmAPIView
+
+__all__ = [
+    "ProfileUpdateAPIView",
+    "ProfileDeleteAPIView",
+    "PasswordResetRequestAPIView",
+    "PasswordResetConfirmAPIView",
+]

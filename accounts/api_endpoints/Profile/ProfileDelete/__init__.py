@@ -1,1 +1,3 @@
-from .views import *
+from .views import ProfileDeleteAPIView
+
+__all__ = ["ProfileDeleteAPIView"]
