@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from products.models import Review
+from products.models import Review, Comment
 
 
 class ReviewCreateSerializer(ModelSerializer):
@@ -14,5 +14,13 @@ class ReviewCreateSerializer(ModelSerializer):
         ]
         read_only_fields = ["id"]
 
-    def create(self, validated_data):
-        return super().create(validated_data)
+class CommentCreateSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = [
+            "id",
+            "product",
+            "text",
+            "parent",
+        ]
+        read_only_fields = ["id"]
