@@ -121,14 +121,9 @@ Edit
 
 ---
 
-## ✅ Endi nima qilish kerak?
-
-1. `README.md` faylni VS Code’da oching  
-2. `<<<<<<<`, `=======`, `>>>>>>>` kabi conflict belgilari bor bloklarni **tozalang**  
-3. Yuqoridagi **toza versiyani** joylashtiring  
-4. Terminalda quyidagini bering:
+## ✅ Endi terminalda quyidagilarni bajaring:
 
 ```bash
 git add README.md
-git commit -m "fix: resolve merge conflict in README.md"
+git commit -m "fix: resolve final merge conflict in README.md"
 git push origin refactor/profile-endpoints
