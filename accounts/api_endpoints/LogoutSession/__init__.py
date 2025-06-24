@@ -1,1 +1,3 @@
-from .views import *
+from .views import SessionLogoutAPIView
+
+__all__ = ["SessionLogoutAPIView"]
