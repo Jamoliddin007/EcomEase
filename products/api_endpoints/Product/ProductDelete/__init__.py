@@ -1,1 +1,3 @@
-from .views import *
+from .views import ProductDeleteAPIView
+
+__all__ = ["ProductDeleteAPIView"]

@@ -1,1 +1,3 @@
-from .views import *
+from .views import BrandDeleteAPIView
+
+__all__ = ["BrandDeleteAPIView"]
