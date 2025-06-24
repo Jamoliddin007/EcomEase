@@ -1,4 +1,3 @@
-
 from django.utils.translation import gettext_lazy as _
 
 from pathlib import Path
@@ -268,24 +267,49 @@ JAZZMIN_SETTINGS = {
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# Logging Suppoer
+# Logging Config
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    # Define formatters for log message appearance
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",  # Use string formatting style
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
+    # Define handlers to specify where logs go
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",  # Outputs to console
+            "level": "DEBUG",  # Capture all levels
+            "formatter": "simple",  # Use simple format for console
+        },
+        "file": {
+            "class": "logging.handlers.RotatingFileHandler",  # Rotates log files to manage size
+            "level": "DEBUG",  # Capture all levels
+            "formatter": "verbose",  # Use verbose format for files
+            "filename": os.path.join(BASE_DIR, "logs", "debug.log"),  # Log file path
+            "maxBytes": 1024 * 1024 * 5,  # 5 MB per file
+            "backupCount": 5,  # Keep 5 backup files
+        },
     },
+    # Define loggers for your apps and Django
     "loggers": {
-        "accounts": {
-            "handlers": ["console"],
+        # Root logger (captures all logs not handled by other loggers)
+        "": {
+            "handlers": ["console", "file"],
             "level": "DEBUG",
+            "propagate": True,
+        },
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",  # Reduce noise from Django internals
             "propagate": False,
         },
     },
@@ -305,4 +329,4 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
