@@ -6,19 +6,19 @@ from .models import User
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(
-        label='Password',
+        label="Password",
         widget=forms.PasswordInput,
-        help_text=password_validation.password_validators_help_text_html()
+        help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label='Password confirmation',
+        label="Password confirmation",
         widget=forms.PasswordInput,
-        help_text='Enter the same password as above, for verification.'
+        help_text="Enter the same password as above, for verification.",
     )
 
     class Meta:
         model = User
-        fields = ('email', 'phone_number', 'first_name', 'last_name')
+        fields = ("email", "phone_number", "first_name", "last_name")
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -38,7 +38,14 @@ class UserCreationForm(forms.ModelForm):
 class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('email', 'phone_number', 'first_name', 'last_name', 'is_active', 'is_staff')
+        fields = (
+            "email",
+            "phone_number",
+            "first_name",
+            "last_name",
+            "is_active",
+            "is_staff",
+        )
 
 
 class LoginForm(forms.Form):

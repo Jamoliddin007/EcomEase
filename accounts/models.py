@@ -33,16 +33,34 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     
 
 class Cart(BaseModel):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="cart")
+    user = models.OneToOneField(
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="cart"
+    )
 
     def __str__(self):
         return str(self.user)
 
+    class Meta:
+        verbose_name = _("Cart")
+        verbose_name_plural = _("Carts")
+
 
 class CartItem(BaseModel):
-    cart = models.ForeignKey(Cart, on_delete=models.RESTRICT, null=False, blank=False, related_name="cart_items")
-    product = models.ForeignKey('products.ProductVariant', on_delete=models.RESTRICT, null=True, blank=True)
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=False,
+        related_name="cart_items",
+    )
+    product = models.ForeignKey(
+        "products.ProductVariant", on_delete=models.RESTRICT, null=True, blank=True
+    )
     quantity = models.IntegerField(null=False, blank=False)
 
     def __str__(self):
         return f"CartItem({self.id})"
+
+    class Meta:
+        verbose_name = _("Cart Item")
+        verbose_name_plural = _("Cart Items")
