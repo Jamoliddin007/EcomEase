@@ -1,1 +1,3 @@
-from .views import *
+from .views import CategoryUpdateAPIView
+
+__all__ = ["CategoryUpdateAPIView"]

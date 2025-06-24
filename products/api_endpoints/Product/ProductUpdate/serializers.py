@@ -7,23 +7,14 @@ from products.utils import slugify
 class CategoryProductUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = [
-            "id",
-            "name",
-            "slug"
-        ]
+        fields = ["id", "name", "slug"]
+
 
 class ProductUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = [
-            "name",
-            "description",
-            "brand",
-            "default_images",
-            "category"
-        ]
-    
+        fields = ["name", "description", "brand", "default_images", "category"]
+
     def to_representation(self, instance):
         instance = {
             "id": instance.id,
@@ -32,7 +23,7 @@ class ProductUpdateSerializer(serializers.ModelSerializer):
             "brand": instance.brand.name,
             "slug": instance.slug,
             "is_active": instance.is_active,
-            "category": CategoryProductUpdateSerializer(instance.category).data
+            "category": CategoryProductUpdateSerializer(instance.category).data,
         }
 
         return instance

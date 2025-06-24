@@ -4,8 +4,9 @@ from rest_framework import permissions
 from rest_framework.response import Response
 
 from products.models import Product
-from products.api_endpoints.Product.ProductCreate.serializers import ProductCreateSerializer
-
+from products.api_endpoints.Product.ProductCreate.serializers import (
+    ProductCreateSerializer,
+)
 
 class ProductCreateAPIView(GenericAPIView, CreateModelMixin):
     queryset = Product.objects.all()

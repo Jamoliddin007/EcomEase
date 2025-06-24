@@ -1,5 +1,3 @@
-from .SizeCreate import *
-from .SizeList import *             
-from .SizeUpdate import *
-from .SizeDelete import *
-from .SizeDetail import *
+from .views import SizeListCreateView, SizeRetrieveUpdateDestroyView
+
+__all__ = ["SizeListCreateView", "SizeRetrieveUpdateDestroyView"]

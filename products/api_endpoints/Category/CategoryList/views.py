@@ -2,7 +2,9 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 from products.models import Category
-from products.api_endpoints.Category.CategoryList.serializers import CategoryListSerializer
+from products.api_endpoints.Category.CategoryList.serializers import (
+    CategoryListSerializer,
+)
 
 
 class CategoryListAPIView(ListAPIView):
