@@ -10,27 +10,27 @@ The project offers a clean admin panel, organized API endpoints, and a solid fou
 
 ## ⚙️ Key Features
 
-- Modular API endpoints for Products, Categories, Brands, Variants, Colors, Sizes, Media, Reviews, and Comments  
-- Multilingual support using `django-modeltranslation` for fields like `name` and `description` in **uz**, **ru**, and **en**  
-- JWT Authentication with `djangorestframework-simplejwt` for secure access and refresh tokens  
-- Structured admin panel with custom admin classes for full control over product management  
-- Swagger & Redoc API documentation using `drf_yasg`  
-- Static & media file handling with customizable `MEDIA_URL` and `MEDIA_ROOT`  
-- Reusable base model including timestamps (`created_at`, `updated_at`) for all models  
-- Clean project structure using `api_endpoints/<ModelName>/<Operation>/views.py` pattern  
+- **Modular API endpoints** for Products, Categories, Brands, Variants, Colors, Sizes, Media, Reviews, and Comments.
+- **Multilingual support** using `django-modeltranslation` for fields like `name` and `description` in `uz`, `ru`, and `en`.
+- **JWT Authentication** with `djangorestframework-simplejwt` for secure access and refresh tokens.
+- **Structured admin panel** with custom admin classes for full control over product management.
+- **Swagger & Redoc API documentation** using `drf_yasg`.
+- **Static & media file handling** with customizable `MEDIA_URL` and `MEDIA_ROOT`.
+- **Reusable base model** including timestamps (`created_at`, `updated_at`) for all models.
+- **Clean project structure** using `api_endpoints/<ModelName>/<Operation>/views.py` pattern.
 
 ---
 
 ## 🧰 Tech Stack
 
-| Layer            | Tools / Libraries                    |
-|------------------|--------------------------------------|
-| Backend Framework| Django, Django REST Framework         |
-| Auth             | djangorestframework-simplejwt         |
-| Translation      | django-modeltranslation              |
-| API Docs         | drf_yasg (Swagger/OpenAPI, Redoc)    |
-| Admin UI         | Django Admin (Jazzmin optional)      |
-| Database         | PostgreSQL / SQLite                  |
+| Layer            | Tools / Libraries                        |
+|------------------|------------------------------------------|
+| Backend Framework| Django, Django REST Framework            |
+| Auth             | djangorestframework-simplejwt            |
+| Translation      | django-modeltranslation                  |
+| API Docs         | drf_yasg (Swagger/OpenAPI, Redoc)        |
+| Admin UI         | Django Admin (Jazzmin optional)          |
+| Database         | PostgreSQL / SQLite                      |
 
 ---
 
@@ -45,7 +45,6 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
-
 Swagger: http://localhost:8000/swagger/
 
 Admin Panel: http://localhost:8000/admin/
@@ -115,3 +114,21 @@ React yoki Vue bilan frontend integratsiyasi
 Docker orqali deploy qilish
 
 To‘lov tizimlari integratsiyasi
+
+yaml
+Copy
+Edit
+
+---
+
+## ✅ Endi nima qilish kerak?
+
+1. `README.md` faylni VS Code’da oching  
+2. `<<<<<<<`, `=======`, `>>>>>>>` kabi conflict belgilari bor bloklarni **tozalang**  
+3. Yuqoridagi **toza versiyani** joylashtiring  
+4. Terminalda quyidagini bering:
+
+```bash
+git add README.md
+git commit -m "fix: resolve merge conflict in README.md"
+git push origin refactor/profile-endpoints
